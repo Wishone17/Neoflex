@@ -28,39 +28,39 @@ public class PeopleController {
         return "persons-list";
     }
 
-    //Получаем форму для заполнения для добавления
-    @GetMapping("/add")
-    public String addPerson(@ModelAttribute("person") Person person){
-        return "add";
-    }
+   //Получаем форму для заполнения для добавления
+   @GetMapping("/add")
+   public String addPerson(@ModelAttribute("person") Person person){
+       return "add";
+   }
 
-    @PostMapping()
-    public String createPerson (@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
-        if(bindingResult.hasErrors())
-            return "add";
-        personDAO.save(person);
-        return "redirect:/people";
-    }
+   @PostMapping()
+   public String createPerson (@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
+       if(bindingResult.hasErrors())
+           return "add";
+       personDAO.save(person);
+       return "redirect:/people";
+   }
 
-    @GetMapping("/edit/{id}")
-    public String edit (Model model, @PathVariable("id") int id){
-        model.addAttribute("person", personDAO.showPerson(id));
-        return "edit";
-    }
+   @GetMapping("/edit/{id}")
+   public String edit (Model model, @PathVariable("id") int id){
+       model.addAttribute("person", personDAO.showPerson(id));
+       return "edit";
+   }
 
-    @PostMapping("/{id}")
-    public String update(@ModelAttribute("person") @Valid Person person,BindingResult bindingResult, @PathVariable("id") int id){
-        if(bindingResult.hasErrors())
-            return "edit";
-        personDAO.update(id, person);
-        return "redirect:/people";
-    }
+   @PostMapping("/{id}")
+   public String update(@ModelAttribute("person") @Valid Person person,BindingResult bindingResult, @PathVariable("id") int id){
+       if(bindingResult.hasErrors())
+           return "edit";
+       personDAO.update(id, person);
+       return "redirect:/people";
+   }
 
-    //Удаляем человека
-    @GetMapping("/delete/{id}")
-    public String deletePerson(@PathVariable("id") int id){
-        personDAO.delete(id);
-        return "redirect:/people";
-    }
+   //Удаляем человека
+   @GetMapping("/delete/{id}")
+   public String deletePerson(@PathVariable("id") int id){
+       personDAO.delete(id);
+       return "redirect:/people";
+   }
 
 }

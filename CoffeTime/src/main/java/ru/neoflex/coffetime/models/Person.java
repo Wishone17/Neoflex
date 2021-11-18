@@ -1,7 +1,6 @@
 package ru.neoflex.coffetime.models;
 
 import lombok.Data;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Component;
 
 

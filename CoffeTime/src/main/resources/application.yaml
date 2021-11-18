@@ -1,7 +1,23 @@
 spring:
   datasource:
-    url: 'jdbc:mysql://localhost:3306/springDB'
-    username: 'root'
-    password: 'E3e3Sk68'
+    url: 'jdbc:oracle:thin:@localhost:1521:ORCLCDB'
+    username: wish
+    password: wish
     driver:
-      class-name: 'com.mysql.jdbc.Driver'
+      class-name: 'oracle.jdbc.OracleDriver'
+
+
+  mail:
+    host: smtp.gmail.com
+    username: crudtestmail@gmail.com
+    password: crudtest111
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+
+
