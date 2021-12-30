@@ -3,7 +3,6 @@ package ru.neoflex.coffetime.service;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -18,7 +17,6 @@ public class EmailService {
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
     }
-
 
     public void sendEmail(List<String> emailList) throws MessagingException {
         MimeMessage message = mailSender.createMimeMessage();
