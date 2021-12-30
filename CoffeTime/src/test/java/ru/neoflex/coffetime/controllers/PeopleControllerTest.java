@@ -29,9 +29,9 @@ class PeopleControllerTest {
     private PersonDAO personDAO;
 
     @Test
-    void getPersonList() throws Exception{
+    void getPersonList() throws Exception {
         List<Person> people = Arrays.asList(new Person(1, "Илья", "Александров", "alex@gmail.com"),
-                                            new Person(2, "Владимир", "Максимов", "max@gmail.com"));
+                new Person(2, "Владимир", "Максимов", "max@gmail.com"));
         when(personDAO.getPeople()).thenReturn(people);
         mvc.perform(MockMvcRequestBuilders.get("/people"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -40,7 +40,7 @@ class PeopleControllerTest {
     }
 
     @Test
-    void addPerson() throws Exception{
+    void addPerson() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/people/add"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
@@ -56,22 +56,27 @@ class PeopleControllerTest {
     }
 
     @Test
-    void edit() {
+    void edit() throws Exception{
         List<Person> people = Arrays.asList(new Person(1, "Илья", "Александров", "alex@gmail.com"),
                 new Person(2, "Владимир", "Максимов", "max@gmail.com"));
         when(personDAO.showPerson(0)).thenReturn(people.get(0));
+        mvc.perform(MockMvcRequestBuilders.get("/people/edit/{id}", 0))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(view().name("edit"));
     }
 
 
+
     @Test
-    void update() throws Exception{
+    void update() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .post("/people/{id}", 2)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
+
     @Test
-    void deletePerson() throws Exception{
+    void deletePerson() throws Exception {
         mvc.perform(MockMvcRequestBuilders
                         .get("/people/delete/{id}", 1))
                 .andExpect(redirectedUrl("/people"))
