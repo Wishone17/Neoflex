@@ -65,8 +65,6 @@ class PeopleControllerTest {
                 .andExpect(view().name("edit"));
     }
 
-
-
     @Test
     void update() throws Exception {
         mvc.perform(MockMvcRequestBuilders
