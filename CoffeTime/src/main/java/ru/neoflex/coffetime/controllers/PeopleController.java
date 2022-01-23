@@ -28,12 +28,13 @@ public class PeopleController {
         return "persons-list";
     }
 
-    //Получаем форму для заполнения для добавления
+    //Получаем форму  для добавления
     @GetMapping("/add")
     public String addPerson(@ModelAttribute("person") Person person) {
         return "add";
     }
 
+    //добавляем в БД
     @PostMapping()
     public String createPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
@@ -41,6 +42,7 @@ public class PeopleController {
         personDAO.save(person);
         return "redirect:/people";
     }
+
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") int id) {

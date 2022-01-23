@@ -9,13 +9,9 @@ import java.util.List;
 
 @Component
 public class PersonDAO {
-    private JdbcTemplate jdbcTemplate;
-
+    private final JdbcTemplate jdbcTemplate;
     public PersonDAO(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    public PersonDAO() {
     }
 
     public List<Person> getPeople() {
@@ -43,6 +39,7 @@ public class PersonDAO {
         return jdbcTemplate.queryForList("SELECT email FROM PERSON", String.class);
     }
 }
+
 
 
 

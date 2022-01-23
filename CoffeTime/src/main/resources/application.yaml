@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: 'jdbc:oracle:thin:@localhost:1521:ORCLCDB'
+    url: 'jdbc:oracle:thin:@192.168.0.133:1521/ORCLCDB.localdomain'
     username: wish
     password: wish
     driver:
@@ -19,5 +19,3 @@ spring:
           starttls:
             enable: true
     protocol: smtp
-
-
